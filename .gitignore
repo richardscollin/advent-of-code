@@ -1,3 +1,5 @@
-*.txt
+2020/**/*.txt
+2021/**/*.txt
+2022/**/*.txt
 input
 .vscode
