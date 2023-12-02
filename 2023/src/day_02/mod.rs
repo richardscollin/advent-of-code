@@ -70,28 +70,21 @@ fn part1(s: &str) -> u32 {
 }
 
 fn part1_cleanup(s: &str) -> u32 {
-    let target: HashMap<String, u32> = HashMap::from([
-        (String::from("red"), 12),
-        (String::from("green"), 13),
-        (String::from("blue"), 14),
-    ]);
+    let target = HashMap::from([("red", 12), ("green", 13), ("blue", 14)]);
 
     s.lines()
         .enumerate()
         .filter_map(|(game_id, game)| {
             let (_, drawings) = game.split_once(": ")?;
-
-            for drawing in drawings.split("; ") {
-                for pair in drawing.split(", ") {
-                    let (occurances, color) = pair.split_once(' ')?;
-                    let occurances: u32 = occurances.parse().ok()?;
-
-                    if occurances > target[color] {
-                        return None;
-                    }
-                }
-            }
-            Some(game_id as u32 + 1)
+            drawings
+                .split("; ")
+                .all(|drawing| {
+                    drawing.split(", ").all(|pair| {
+                        let (occurances, color) = pair.split_once(' ').unwrap();
+                        occurances.parse::<u32>().unwrap() <= target[color]
+                    })
+                })
+                .then_some(game_id as u32 + 1)
         })
         .sum()
 }
