@@ -97,7 +97,7 @@ fn part2(s: &str) -> u32 {
             panic!("invalid input");
         };
 
-        let mut count: HashMap<&str, u32> = HashMap::from([("red", 0), ("blue", 0), ("green", 0)]);
+        let mut count = HashMap::from([("red", 0), ("blue", 0), ("green", 0)]);
 
         for drawing in drawings.split("; ") {
             for pair in drawing.split(", ") {
