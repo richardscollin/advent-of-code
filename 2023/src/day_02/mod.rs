@@ -117,15 +117,15 @@ fn part2(s: &str) -> u32 {
 fn part2_cleanup(s: &str) -> u32 {
     s.lines()
         .filter_map(|game| {
-            let mut count: HashMap<&str, u32> =
-                HashMap::from([("red", 0), ("blue", 0), ("green", 0)]);
+            let mut count = HashMap::new();
             let (_, drawings) = game.split_once(": ")?;
 
             for drawing in drawings.split("; ") {
                 for pair in drawing.split(", ") {
                     let (occurances, color) = pair.split_once(' ')?;
                     let occurances: u32 = occurances.parse().ok()?;
-                    *count.get_mut(color)? = count[color].max(occurances);
+                    let value = count.entry(color).or_default();
+                    *value = occurances.max(*value);
                 }
             }
             Some(count.values().product::<u32>())
