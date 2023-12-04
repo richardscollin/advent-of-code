@@ -1,6 +1,9 @@
 //! Day 4: Scratchcards
 //! <https://adventofcode.com/2023/day/4>
-use std::collections::{HashMap, HashSet};
+use std::collections::{
+    HashMap,
+    HashSet,
+};
 
 pub fn part1(s: &str) -> usize {
     let mut acc = 0;

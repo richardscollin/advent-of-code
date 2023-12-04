@@ -1,7 +1,15 @@
-use criterion::{criterion_group, criterion_main, Criterion};
 use std::hint::black_box;
 
-use aoc_2023::{day_01, day_02, day_03};
+use aoc_2023::{
+    day_01,
+    day_02,
+    day_03,
+};
+use criterion::{
+    criterion_group,
+    criterion_main,
+    Criterion,
+};
 
 pub fn criterion_benchmark(c: &mut Criterion) {
     #[cfg(disable)]
