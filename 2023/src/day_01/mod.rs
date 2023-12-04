@@ -40,7 +40,7 @@ zoneight234
     assert_eq!(part2_functional(include_str!("input.txt")), 53868);
 }
 
-fn part1(s: &str) -> u32 {
+pub fn part1(s: &str) -> u32 {
     let mut acc: u32 = 0;
 
     for line in s.lines() {
@@ -53,7 +53,7 @@ fn part1(s: &str) -> u32 {
     acc
 }
 
-fn part1_functional(s: &str) -> u32 {
+pub fn part1_functional(s: &str) -> u32 {
     s.lines()
         .filter_map(|line| {
             let first = line.chars().find(char::is_ascii_digit)?.to_digit(10)?;
@@ -63,7 +63,7 @@ fn part1_functional(s: &str) -> u32 {
         .sum()
 }
 
-fn part2(s: &str) -> u32 {
+pub fn part2(s: &str) -> u32 {
     const WORDS: [&str; 9] = [
         "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
     ];
@@ -92,7 +92,7 @@ fn part2(s: &str) -> u32 {
     acc
 }
 
-fn part2_functional(s: &str) -> u32 {
+pub fn part2_functional(s: &str) -> u32 {
     const WORDS: [&str; 9] = [
         "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
     ];

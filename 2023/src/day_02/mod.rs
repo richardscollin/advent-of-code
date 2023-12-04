@@ -37,7 +37,7 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
     assert_eq!(part2_cleanup(include_str!("input.txt")), 86036);
 }
 
-fn part1(s: &str) -> u32 {
+pub fn part1(s: &str) -> u32 {
     let target: HashMap<String, u32> = HashMap::from([
         (String::from("red"), 12),
         (String::from("green"), 13),
@@ -69,7 +69,7 @@ fn part1(s: &str) -> u32 {
     acc
 }
 
-fn part1_cleanup(s: &str) -> u32 {
+pub fn part1_cleanup(s: &str) -> u32 {
     let target = HashMap::from([("red", 12), ("green", 13), ("blue", 14)]);
 
     s.lines()
@@ -89,7 +89,7 @@ fn part1_cleanup(s: &str) -> u32 {
         .sum()
 }
 
-fn part2(s: &str) -> u32 {
+pub fn part2(s: &str) -> u32 {
     let mut acc = 0;
 
     for game in s.lines() {
@@ -114,7 +114,7 @@ fn part2(s: &str) -> u32 {
     acc
 }
 
-fn part2_cleanup(s: &str) -> u32 {
+pub fn part2_cleanup(s: &str) -> u32 {
     s.lines()
         .filter_map(|game| {
             let mut count = HashMap::new();

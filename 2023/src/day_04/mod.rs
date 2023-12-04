@@ -2,7 +2,7 @@
 //! <https://adventofcode.com/2023/day/4>
 use std::collections::{HashMap, HashSet};
 
-fn part1(s: &str) -> usize {
+pub fn part1(s: &str) -> usize {
     let mut acc = 0;
     for card in s.lines() {
         let (_, card) = card.split_once(": ").unwrap();
@@ -26,7 +26,7 @@ fn part1(s: &str) -> usize {
     acc
 }
 
-fn part2(s: &str) -> usize {
+pub fn part2(s: &str) -> usize {
     let mut mult: HashMap<usize, usize> = HashMap::new(); // default value of 1
 
     for (card_id, card) in s.lines().enumerate() {

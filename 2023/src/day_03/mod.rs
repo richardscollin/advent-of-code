@@ -50,7 +50,7 @@ fn test_part2() {
     assert_eq!(part2_clean(include_str!("input.txt").trim()), 78915902);
 }
 
-fn part1(s: &str) -> u32 {
+pub fn part1(s: &str) -> u32 {
     let mut grid: Vec<Vec<char>> = vec![];
 
     for line in s.lines() {
@@ -106,7 +106,7 @@ fn part1(s: &str) -> u32 {
     acc
 }
 
-fn part1_clean(s: &str) -> u32 {
+pub fn part1_clean(s: &str) -> u32 {
     let grid = s.split('\n').collect::<Vec<&str>>();
     let height = grid.len();
     let width = grid[0].len();
@@ -175,13 +175,13 @@ fn neighbors(
     ]
     .into_iter()
     .map(move |(dr, dc)| (r as isize + dr, c as isize + dc))
-    .flat_map(move |(nr, nc)| {
+    .filter_map(move |(nr, nc)| {
         ((0..height as isize).contains(&nr) && (0..width as isize).contains(&nc))
             .then_some((nr as usize, nc as usize))
     })
 }
 
-fn part2(s: &str) -> u32 {
+pub fn part2(s: &str) -> u32 {
     let mut grid: Vec<Vec<char>> = vec![];
 
     for line in s.lines() {
@@ -246,7 +246,7 @@ fn part2(s: &str) -> u32 {
     acc
 }
 
-fn part2_clean(s: &str) -> u32 {
+pub fn part2_clean(s: &str) -> u32 {
     let grid = s.split('\n').collect::<Vec<&str>>();
     let height = grid.len();
     let width = grid[0].len();

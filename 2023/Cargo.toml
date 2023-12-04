@@ -9,3 +9,11 @@ edition = "2021"
 
 [lints.rust]
 dead_code = "allow"
+
+[[bench]]
+name = "example_benchmark"
+harness = false
+
+[dev-dependencies]
+criterion = "0.5.1"
+dhat = "0.3.2"
