@@ -1,7 +1,4 @@
-use std::collections::{
-    HashMap,
-    HashSet,
-};
+use std::collections::{HashMap, HashSet};
 
 #[test]
 fn test_part1() {
@@ -160,7 +157,7 @@ pub fn part1_clean(s: &str) -> u32 {
     acc
 }
 
-fn neighbors(
+pub fn neighbors(
     r: usize,
     c: usize,
     height: usize,
@@ -271,7 +268,12 @@ pub fn part2_clean(s: &str) -> u32 {
                 // must be . or symbol, if it's a symbol then is_part is false
                 if let Ok(part) = num.parse::<u32>() {
                     for i in start_c.unwrap()..c {
-                        candidate_parts[r][i] = Some(((r, start_c.unwrap()), part));
+                        // safe version:
+                        // candidate_parts[r][i] = Some(((r, start_c.unwrap()), part));
+                        unsafe {
+                            *candidate_parts.get_unchecked_mut(r).get_unchecked_mut(i) =
+                                Some(((r, start_c.unwrap()), part));
+                        }
                     }
                 }
                 num.clear();
