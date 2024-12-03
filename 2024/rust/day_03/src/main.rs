@@ -2,9 +2,8 @@ fn part_01(input: &str) -> usize {
     let pattern = regex::Regex::new(r#"mul\((\d{1,3}),(\d{1,3})\)"#).unwrap();
 
     pattern
-        .find_iter(input)
-        .map(|m| {
-            let cap = pattern.captures(m.as_str()).unwrap();
+        .captures_iter(input)
+        .map(|cap| {
             let left = cap.get(1).unwrap().as_str().parse::<usize>().unwrap();
             let right = cap.get(2).unwrap().as_str().parse::<usize>().unwrap();
 
@@ -18,17 +17,17 @@ fn part_02(input: &str) -> usize {
 
     let mut do_mul = true;
     let mut acc = 0;
-    for m in pattern.find_iter(input) {
-        if m.as_str() == "do()" {
-            do_mul = true;
-        } else if m.as_str() == "don't()" {
-            do_mul = false;
-        } else {
-            let cap = pattern.captures(m.as_str()).unwrap();
-            let left = cap.get(1).unwrap().as_str().parse::<usize>().unwrap();
-            let right = cap.get(2).unwrap().as_str().parse::<usize>().unwrap();
-            if do_mul {
-                acc += left * right;
+
+    for captures in pattern.captures_iter(input) {
+        match captures.get(0).unwrap().as_str() {
+            "do()" => do_mul = true,
+            "don't()" => do_mul = false,
+            _ => {
+                let left: usize = captures.get(1).unwrap().as_str().parse().unwrap();
+                let right: usize = captures.get(2).unwrap().as_str().parse().unwrap();
+                if do_mul {
+                    acc += left * right;
+                }
             }
         }
     }
