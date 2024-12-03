@@ -1,16 +1,16 @@
 fn part_01(input: &str) -> usize {
     let pattern = regex::Regex::new(r#"mul\((\d{1,3}),(\d{1,3})\)"#).unwrap();
-    let mut acc = 0;
 
-    for m in pattern.find_iter(input) {
-        let cap = pattern.captures(m.as_str()).unwrap();
-        let left = cap.get(1).unwrap().as_str().parse::<usize>().unwrap();
-        let right = cap.get(2).unwrap().as_str().parse::<usize>().unwrap();
+    pattern
+        .find_iter(input)
+        .map(|m| {
+            let cap = pattern.captures(m.as_str()).unwrap();
+            let left = cap.get(1).unwrap().as_str().parse::<usize>().unwrap();
+            let right = cap.get(2).unwrap().as_str().parse::<usize>().unwrap();
 
-        acc += left * right;
-    }
-
-    acc
+            left * right
+        })
+        .sum()
 }
 
 fn part_02(input: &str) -> usize {
